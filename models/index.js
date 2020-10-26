@@ -40,13 +40,16 @@ fs
     db[model.name] = model;
   });
 
+// Object.keys returns array containing keys of the db object. forEach alters the array passed to it by passing each array item to a callback function
 Object.keys(db).forEach(function(modelName) {
+  // since forEach is looping through an array of db's keys, each modelName represents a key in db. if the associate function is defined then pass in the models object as the argument. the model will specify the model in db which is associated with it
   if (db[modelName].associate) {
     db[modelName].associate(db);
   }
 });
 
-// db.sequelize = sequelize;
-// db.Sequelize = Sequelize;
+// TODO:
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
-// module.exports = db;
+module.exports = db;
