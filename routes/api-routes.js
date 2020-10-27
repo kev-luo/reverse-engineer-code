@@ -8,7 +8,6 @@ module.exports = function(app) {
   // Otherwise the user will be sent an error
   // passport.authenticate receives the req payload containing the username/password input by theh user
   app.post("/api/login", passport.authenticate("local"), function(req, res) {
-    console.log(req.message);
     res.json(req.user);
   });
 
@@ -16,10 +15,12 @@ module.exports = function(app) {
   // how we configured our Sequelize User Model. If the user is created successfully, proceed to log the user in,
   // otherwise send back an error
   app.post("/api/signup", function(req, res) {
+    // sequelize method to insert new instance into Users table
     db.User.create({
       email: req.body.email,
       password: req.body.password
     })
+    // 307 is a temporary redirect which reuses the req method and body of the original request to make the request to /api/login 
       .then(function() {
         res.redirect(307, "/api/login");
       })
@@ -30,6 +31,7 @@ module.exports = function(app) {
 
   // Route for logging user out
   app.get("/logout", function(req, res) {
+    // passport middleware adds a logout fxn to the request object which removes the req.user object, and the session object is removed from the server. Once a session object is removed, the serialized session id stored in the cookie can no longer be matched to a session object after the session id has been deserialized
     req.logout();
     res.redirect("/");
   });

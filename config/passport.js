@@ -24,6 +24,7 @@ passport.use(new LocalStrategy(
         });
       }
       // If there is a user with the given email, but the password the user gives us is incorrect
+      // use the sequelize instance method we defined in our model to check if the input password matches the stored password
       else if (!dbUser.validPassword(password)) {
         // verify callback invokes done with false as an arg indicating authentication failed
         return done(null, false, {

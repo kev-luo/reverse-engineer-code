@@ -27,6 +27,7 @@ module.exports = function(sequelize, DataTypes) {
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   // this is an instance method, which means it's available to use on specific instances of the User model (ie specific users). this.password refers to the password of the user instance, while password is the password input by the user
   User.prototype.validPassword = function(password) {
+    // bcrypt.compare pulls salt out of stored password and uses it to hash the input password, then compares the two hashed passwords
     return bcrypt.compareSync(password, this.password);
   };
   // Hooks are automatic methods that run during various phases of the User Model lifecycle

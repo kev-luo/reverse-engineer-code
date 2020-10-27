@@ -11,7 +11,7 @@ $(document).ready(function() {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
-
+    // if either email or password field is blank, signUpUser is never called and the post request is never sent.
     if (!userData.email || !userData.password) {
       return;
     }
