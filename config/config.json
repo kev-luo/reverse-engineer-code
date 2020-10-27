@@ -1,7 +1,7 @@
 {
   "development": {
-    "username": "kevin",
-    "password": "mipassword",
+    "username": "root",
+    "password": null,
     "database": "passport_demo",
     "host": "127.0.0.1",
     "dialect": "mysql"
