@@ -14,7 +14,7 @@ Now that the app is running a use can go to the home page and create an account.
 Once the form, which initially sent the POST request to the signup route, receives the response, the window reloads with the members page. The members page has its own GET request route handler, which also contains an app-specific middleware function, isAuthenticated. I believe this checks to see if the user exists in the current session. If you look at server.js, you'll see some middleware that sets the req.user property to the deserialized user object which isAuthenticated checks for. The serialized user object is stored in a memorystore instance on the server-side, while the corresponding serialized session id is stored in a cookie on the client-side. This connection is what allows users to remain logged in during a given session (in this case as long as the app is still running). 
 
 ## Recap
-To recap
+To recap, we used Passport js to authenticate user login, Bcrypt js to salt and hash user passwords for safe storage, and Sequelize to fetch data from and edit our MySQL database. 
 
 ## Questions
 * [kvn.luo@gmail.com](kvn.luo@gmail.com)
